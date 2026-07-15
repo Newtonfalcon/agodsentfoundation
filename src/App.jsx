@@ -12,7 +12,7 @@ import { founder } from "./data/founder";
 import { testimonials } from "./data/testimonials";
 import { stories } from "./data/stories";
 import { news } from "./data/news";
-import { contact } from "./data/contact";
+import { contact, CONTACT_FORM_RECIPIENT_EMAIL } from "./data/contact";
 
 // Icons
 import {
@@ -94,13 +94,7 @@ export default function App() {
   // News reader modal
   const [activeNewsId, setActiveNewsId] = useState(null);
 
-  // Message Form state in Contact
-  const [contactName, setContactName] = useState("");
-  const [contactEmail, setContactEmail] = useState("");
-  const [contactSubject, setContactSubject] = useState("");
-  const [contactMessage, setContactMessage] = useState("");
-  const [isSubmittingContact, setIsSubmittingContact] = useState(false);
-  const [contactSuccess, setContactSuccess] = useState(false);
+  // Message Form removed — contact section now links directly via mailto
 
   // Auto-play Hero slideshow
   useEffect(() => {
@@ -187,23 +181,6 @@ export default function App() {
     setCardNumber("");
     setCardExpiry("");
     setCardCvc("");
-  };
-
-  // Send simulated contact email
-  const handleContactSubmit = (e) => {
-    e.preventDefault();
-    if (!contactName || !contactEmail || !contactMessage) return;
-
-    setIsSubmittingContact(true);
-    setTimeout(() => {
-      setIsSubmittingContact(false);
-      setContactSuccess(true);
-      setContactName("");
-      setContactEmail("");
-      setContactSubject("");
-      setContactMessage("");
-      setTimeout(() => setContactSuccess(false), 5000);
-    }, 1200);
   };
 
   // Computations for active quick donation preset info
@@ -1045,79 +1022,38 @@ export default function App() {
                 ))}
               </div>
 
-              {/* Message Simulator Form (7 Columns) */}
-              <div className="lg:col-span-7 bg-white rounded-3xl p-8 border border-gray-100 shadow-soft text-left">
-                <h3 className="font-extrabold text-lg text-gray-900 mb-6">Send an Active Message</h3>
-                
-                <form onSubmit={handleContactSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">My Name</label>
-                      <input
-                        type="text"
-                        required
-                        value={contactName}
-                        onChange={(e) => setContactName(e.target.value)}
-                        placeholder={contact.formPlaceholder.name}
-                        className="w-full bg-[#F8F9FA] border border-gray-200 rounded-xl py-3 px-4 text-sm text-gray-900 focus:outline-none focus:border-[#0B5ED7] focus:ring-1 focus:ring-[#0B5ED7] placeholder-gray-400"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">My Email</label>
-                      <input
-                        type="email"
-                        required
-                        value={contactEmail}
-                        onChange={(e) => setContactEmail(e.target.value)}
-                        placeholder={contact.formPlaceholder.email}
-                        className="w-full bg-[#F8F9FA] border border-gray-200 rounded-xl py-3 px-4 text-sm text-gray-900 focus:outline-none focus:border-[#0B5ED7] focus:ring-1 focus:ring-[#0B5ED7] placeholder-gray-400"
-                      />
-                    </div>
-                  </div>
+              {/* Direct Email Contact Card (7 Columns) */}
+              <div className="lg:col-span-7 bg-white rounded-3xl p-8 border border-gray-100 shadow-soft text-left flex flex-col items-start gap-6">
+                <div>
+                  <h3 className="font-extrabold text-lg text-gray-900 mb-2">Email Us Directly</h3>
+                  <p className="text-sm text-gray-500 font-medium leading-relaxed">
+                    For sponsorships, donation receipts, volunteer opportunities, or any other enquiry,
+                    reach our general team directly at the address below.
+                  </p>
+                </div>
 
-                  <div>
-                    <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Subject</label>
-                    <input
-                      type="text"
-                      value={contactSubject}
-                      onChange={(e) => setContactSubject(e.target.value)}
-                      placeholder={contact.formPlaceholder.subject}
-                      className="w-full bg-[#F8F9FA] border border-gray-200 rounded-xl py-3 px-4 text-sm text-gray-900 focus:outline-none focus:border-[#0B5ED7] focus:ring-1 focus:ring-[#0B5ED7] placeholder-gray-400"
-                    />
-                  </div>
+                <a
+                  href={`mailto:${CONTACT_FORM_RECIPIENT_EMAIL}`}
+                  className="w-full bg-[#F8F9FA] border border-gray-200 hover:border-[#0B5ED7] rounded-2xl py-5 px-6 flex items-center gap-4 group transition-colors"
+                >
+                  <span className="bg-[#0B5ED7]/10 text-[#0B5ED7] p-3 rounded-xl shrink-0">
+                    <Mail className="w-5 h-5" />
+                  </span>
+                  <span className="flex flex-col">
+                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">General Enquiries</span>
+                    <span className="text-lg font-extrabold text-gray-900 group-hover:text-[#0B5ED7] transition-colors">
+                      {CONTACT_FORM_RECIPIENT_EMAIL}
+                    </span>
+                  </span>
+                </a>
 
-                  <div>
-                    <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Message Description</label>
-                    <textarea
-                      required
-                      rows={5}
-                      value={contactMessage}
-                      onChange={(e) => setContactMessage(e.target.value)}
-                      placeholder={contact.formPlaceholder.message}
-                      className="w-full bg-[#F8F9FA] border border-gray-200 rounded-xl py-3 px-4 text-sm text-gray-900 focus:outline-none focus:border-[#0B5ED7] focus:ring-1 focus:ring-[#0B5ED7] placeholder-gray-400"
-                    ></textarea>
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isSubmittingContact}
-                    className="w-full bg-[#0B5ED7] hover:bg-[#094cb0] disabled:bg-gray-400 text-white font-bold py-3.5 px-6 rounded-xl shadow-md transition-colors cursor-pointer flex items-center justify-center gap-2"
-                  >
-                    <span>{isSubmittingContact ? "Sending..." : "Deliver Simulated Inquiry"}</span>
-                    <Send className="w-4 h-4" />
-                  </button>
-
-                  {contactSuccess && (
-                    <div className="flex items-center gap-3 text-green-700 text-xs bg-green-500/10 p-3.5 rounded-xl border border-green-500/20">
-                      <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0" />
-                      <span>Thank you! Your simulated message has been processed successfully. We will reach back to you.</span>
-                    </div>
-                  )}
-
-                </form>
+                <p className="text-xs text-gray-400 font-medium">
+                  Tap or click the address above to open it in your default email app.
+                </p>
               </div>
 
             </div>
+
 
           </div>
         </section>

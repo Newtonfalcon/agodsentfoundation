@@ -1,34 +1,51 @@
 <!doctype html>
+<!--
+  SITE DOMAIN: this file references https://agodsentfoundation.vercel.app in a handful
+  of places below (canonical link, og:url, og:image, twitter:url, twitter:image).
+  If the domain ever changes (e.g. a custom domain is connected in Vercel), do a
+  find-and-replace on "agodsentfoundation.vercel.app" in this file — that's the only
+  place it needs to be updated.
+-->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/logo.png" />
-    
+
+    <!-- Favicons / App Icons (generated from public/logo.png) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0B5ED7" />
+
     <!-- Primary Meta Tags (Google Indexing & Search) -->
     <title>Godsent Foundation | Supporting the Less Privileged & Human Capital Development</title>
     <meta name="title" content="Godsent Foundation | Supporting the Less Privileged & Human Capital Development" />
     <meta name="description" content="Godsent Foundation is dedicated to supporting the less privileged, empowering poor communities, and driving sustainable human capital development." />
     <meta name="keywords" content="Godsent Foundation, charity, NGO, less privileged, human capital development, help poor people, community empowerment, philanthropy" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://yourdomain.com" />
+    <link rel="canonical" href="https://agodsentfoundation.vercel.app/" />
 
     <!-- Open Graph / Facebook / WhatsApp (Shows image and details when sharing links) -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yourdomain.com/" />
-    <meta property="og:title" content="Godsent Foundation" />
+    <meta property="og:url" content="https://agodsentfoundation.vercel.app/" />
+    <meta property="og:site_name" content="Godsent Foundation" />
+    <meta property="og:title" content="Godsent Foundation | Supporting the Less Privileged & Human Capital Development" />
     <meta property="og:description" content="Supporting the less privileged, empowering poor communities, and helping in human capital development." />
-    <meta property="og:image" content="https://yourdomain.com/logo.png" />
+    <meta property="og:image" content="https://agodsentfoundation.vercel.app/og-image.png" />
+    <meta property="og:image:secure_url" content="https://agodsentfoundation.vercel.app/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Godsent Foundation logo" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- X / Twitter Card Preview -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://yourdomain.com/" />
+    <meta property="twitter:url" content="https://agodsentfoundation.vercel.app/" />
     <meta property="twitter:title" content="Godsent Foundation" />
     <meta property="twitter:description" content="Supporting the less privileged, empowering poor communities, and helping in human capital development." />
-    <meta property="twitter:image" content="https://yourdomain.com/logo.png" />
+    <meta property="twitter:image" content="https://agodsentfoundation.vercel.app/og-image.png" />
   </head>
   <body>
     <div id="root"></div>

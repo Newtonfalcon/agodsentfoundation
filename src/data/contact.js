@@ -1,3 +1,7 @@
+// Central inbox that the "Contact Us" form on the site delivers to via a mailto: link.
+// Change this single value to redirect all site-wide enquiries to a different address.
+export const CONTACT_FORM_RECIPIENT_EMAIL = "info@godsentfoundation.org";
+
 export const contact = {
   sectionTitle: "Get in Touch with Our Teams",
   sectionSubtitle: "Have questions about sponsorships, food donations, or volunteer opportunities? Reach out to us directly.",
