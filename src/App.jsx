@@ -1005,15 +1005,15 @@ export default function App() {
                     <div className="space-y-2.5 text-xs text-gray-600 font-medium">
                       <div className="flex gap-2.5 items-start">
                         <MapPin className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
-                        <span>{office.address}</span>
+                        <span className="min-w-0 break-words">{office.address}</span>
                       </div>
                       <div className="flex gap-2.5 items-center">
                         <Phone className="w-4 h-4 text-gray-400 shrink-0" />
-                        <span>{office.phone}</span>
+                        <span className="min-w-0 break-words">{office.phone}</span>
                       </div>
                       <div className="flex gap-2.5 items-center">
                         <Mail className="w-4 h-4 text-gray-400 shrink-0" />
-                        <a href={`mailto:${office.email}`} className="text-[#0B5ED7] hover:underline">
+                        <a href={`mailto:${office.email}`} className="text-[#0B5ED7] hover:underline min-w-0 break-all">
                           {office.email}
                         </a>
                       </div>
@@ -1039,9 +1039,9 @@ export default function App() {
                   <span className="bg-[#0B5ED7]/10 text-[#0B5ED7] p-3 rounded-xl shrink-0">
                     <Mail className="w-5 h-5" />
                   </span>
-                  <span className="flex flex-col">
+                  <span className="flex flex-col min-w-0">
                     <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">General Enquiries</span>
-                    <span className="text-lg font-extrabold text-gray-900 group-hover:text-[#0B5ED7] transition-colors">
+                    <span className="text-lg font-extrabold text-gray-900 group-hover:text-[#0B5ED7] transition-colors break-all">
                       {CONTACT_FORM_RECIPIENT_EMAIL}
                     </span>
                   </span>
