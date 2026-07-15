@@ -237,157 +237,189 @@ export default function App() {
       <main className="flex-grow pt-0">
 
         {/* 1. HERO SLIDER SECTION with Inset High-Conversion Action Panel */}
-        <section id="home" className="relative min-h-[95vh] lg:min-h-[90vh] flex items-center justify-center overflow-hidden">
-          
-          {/* Background Slider */}
-          <div className="absolute inset-0 z-0 bg-gray-950">
-            {hero.slides.map((slide, idx) => (
-              <div
-                key={idx}
-                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                  idx === currentSlide ? "opacity-40 scale-100" : "opacity-0 scale-105"
-                } transform transition-transform duration-[7000ms]`}
-              >
-                <img
-                  src={slide.image}
-                  alt={slide.title}
-                  className="w-full h-full object-cover object-center"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
-              </div>
-            ))}
-          </div>
+       
 
-          {/* Slider Controls */}
-          <div className="absolute bottom-8 left-8 z-20 hidden sm:flex items-center gap-3">
-            {hero.slides.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlide(idx)}
-                className={`w-10 h-1.5 rounded-full transition-all duration-300 ${
-                  idx === currentSlide ? "bg-[#F4C542] w-12" : "bg-white/40 hover:bg-white/60"
-                }`}
-                aria-label={`Go to slide ${idx + 1}`}
-              ></button>
-            ))}
-          </div>
 
-          {/* Core Grid Container */}
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 lg:py-28 w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-              
-              {/* Left Mission Statement (7 Columns) */}
-              <div className="lg:col-span-7 text-left space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-[11px] font-bold tracking-widest uppercase">
-                  <Sparkle className="w-3 h-3 text-[#F4C542] fill-[#F4C542]" />
-                  <span>Empowering Children & Youth</span>
-                </div>
-                
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] tracking-tight">
-                  {hero.slides[currentSlide].title}
-                </h1>
-                
-                <p className="text-base sm:text-lg text-gray-200 font-medium leading-relaxed max-w-2xl">
-                  {hero.slides[currentSlide].description}
-                </p>
 
-                <div className="flex flex-wrap gap-4 pt-2">
-                  <button
-                    onClick={() => handleNavigate("about")}
-                    className="bg-white hover:bg-gray-50 text-gray-900 font-bold px-7 py-3 rounded-full text-xs tracking-wider uppercase transition-all shadow-md focus:outline-none"
-                  >
-                    Our Mission
-                  </button>
-                  <button
-                    onClick={() => handleNavigate("programs")}
-                    className="bg-transparent hover:bg-white/10 text-white font-bold px-7 py-3 rounded-full text-xs tracking-wider uppercase transition-all border border-white/30 focus:outline-none"
-                  >
-                    Explore Programs
-                  </button>
-                </div>
-              </div>
 
-              {/* Right World-Vision-Inspired High Conversion Quick Donation Panel */}
-              <div className="lg:col-span-5">
-                <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-premium border border-gray-100/80 relative overflow-hidden text-gray-900">
-                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#0B5ED7]"></div>
-                  
-                  <h2 className="text-xl font-extrabold tracking-tight mb-1 text-gray-900">
-                    {hero.donationPanel.title}
-                  </h2>
-                  <p className="text-xs text-gray-500 mb-6 font-medium">
-                    {hero.donationPanel.subtitle}
-                  </p>
+      <section id="home" className="relative min-h-[95vh] lg:min-h-[90vh] flex items-center justify-center overflow-hidden">
+  
+  {/* Background Slider - Full, bright background image */}
+  <div className="absolute inset-0 z-0 bg-gray-950">
+    {hero.slides.map((slide, idx) => (
+      <div
+        key={idx}
+        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+          idx === currentSlide ? "opacity-100 scale-100" : "opacity-0 scale-105"
+        } transform transition-transform duration-[7000ms]`}
+      >
+        <img
+          src={slide.image}
+          alt={slide.title}
+          className="w-full h-full object-cover object-center"
+          referrerPolicy="no-referrer"
+        />
+        {/* Subtle vignette layer to help floating UI pop */}
+        <div className="absolute inset-0 bg-black/20"></div>
+      </div>
+    ))}
+  </div>
 
-                  <div className="space-y-4">
-                    {/* Amount Preset Grid */}
-                    <div className="grid grid-cols-4 gap-2">
-                      {hero.donationPanel.presets.map((preset) => (
-                        <button
-                          key={preset.amount}
-                          onClick={() => {
-                            setSelectedAmount(preset.amount);
-                            setCustomAmount("");
-                          }}
-                          className={`py-3.5 px-1 rounded-2xl text-sm font-black border tracking-tight transition-all focus:outline-none ${
-                            selectedAmount === preset.amount
-                              ? "bg-[#0B5ED7] border-[#0B5ED7] text-white shadow-md shadow-[#0B5ED7]/15"
-                              : "bg-[#F8F9FA] border-gray-200/70 text-gray-800 hover:bg-gray-50 hover:border-gray-300"
-                          }`}
-                        >
-                          ${preset.amount}
-                        </button>
-                      ))}
-                      <button
-                        onClick={() => setSelectedAmount("custom")}
-                        className={`py-3.5 px-1 rounded-2xl text-xs font-black border tracking-tight transition-all focus:outline-none ${
-                          selectedAmount === "custom"
-                            ? "bg-[#0B5ED7] border-[#0B5ED7] text-white shadow-md shadow-[#0B5ED7]/15"
-                            : "bg-[#F8F9FA] border-gray-200/70 text-gray-800 hover:bg-gray-50 hover:border-gray-300"
-                        }`}
-                      >
-                        Custom
-                      </button>
-                    </div>
+  {/* Slider Controls */}
+  <div className="absolute bottom-8 left-8 z-20 hidden sm:flex items-center gap-3">
+    {hero.slides.map((_, idx) => (
+      <button
+        key={idx}
+        onClick={() => setCurrentSlide(idx)}
+        className={`w-10 h-1.5 rounded-full transition-all duration-300 ${
+          idx === currentSlide ? "bg-[#F4C542] w-12" : "bg-white/40 hover:bg-white/60"
+        }`}
+        aria-label={`Go to slide ${idx + 1}`}
+      ></button>
+    ))}
+  </div>
 
-                    {/* Custom input or Preset impact description */}
-                    {selectedAmount === "custom" ? (
-                      <div className="relative animate-in fade-in slide-in-from-top-2 duration-200">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 font-black text-gray-400 text-sm">$</span>
-                        <input
-                          type="number"
-                          placeholder="Enter customized donation amount"
-                          value={customAmount}
-                          onChange={(e) => setCustomAmount(e.target.value)}
-                          className="w-full bg-[#F8F9FA] border border-gray-200 rounded-2xl py-3 pl-8 pr-4 text-xs font-bold text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#0B5ED7] focus:bg-white transition-all"
-                        />
-                      </div>
-                    ) : (
-                      <p className="text-xs text-gray-500 font-medium leading-relaxed bg-[#F8F9FA] p-3.5 rounded-2xl border border-gray-100 min-h-[52px]">
-                        {activePresetDesc}
-                      </p>
-                    )}
-
-                    {/* Quick Button Submission */}
-                    <button
-                      onClick={() => handleOpenDonate(selectedAmount, "General Purpose Fund")}
-                      className="w-full bg-[#0B5ED7] hover:bg-[#094cb0] text-white font-bold py-4 px-6 rounded-2xl text-xs tracking-wider uppercase transition-all shadow-md focus:outline-none active:scale-[0.98]"
-                    >
-                      {hero.donationPanel.ctaButton}
-                    </button>
-
-                    <div className="flex items-center justify-between text-[10px] text-gray-400 font-semibold pt-1">
-                      <span className="flex items-center gap-1">🔒 Tax Deductible 501(c)(3)</span>
-                      <span>Verified secure sandbox</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+  {/* Core Grid Container */}
+  <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 lg:py-28 w-full">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+      
+      {/* Left Mission Statement - Glassmorphic Card containing the foreground image & text */}
+      <div className="lg:col-span-7 bg-black/60 backdrop-blur-md border border-white/10 rounded-3xl p-5 sm:p-6 text-left flex flex-col justify-between shadow-2xl">
+        
+        <div className="space-y-4">
+          {/* Double Image Feature: Compact foreground preview card at the top */}
+          <div className="relative w-full h-36 sm:h-44 rounded-2xl overflow-hidden shadow-lg border border-white/10">
+            <img
+              src={hero.slides[currentSlide].image}
+              alt={hero.slides[currentSlide].title}
+              className="w-full h-full object-cover"
+            />
+            {/* Soft gradient inside the image card to overlay the badge */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+            
+            {/* Floated badge inside the foreground image card */}
+            <div className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm border border-white/20 text-white text-[10px] font-bold tracking-widest uppercase">
+              <Sparkle className="w-2.5 h-2.5 text-[#F4C542] fill-[#F4C542]" />
+              <span>Empowering Children & Youth</span>
             </div>
           </div>
-        </section>
+          
+          {/* Text content written directly below the image card */}
+          <div className="space-y-2">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-black text-white leading-tight tracking-tight">
+              {hero.slides[currentSlide].title}
+            </h1>
+            
+            <p className="text-xs sm:text-sm text-gray-200 font-medium leading-relaxed max-w-xl">
+              {hero.slides[currentSlide].description}
+            </p>
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-wrap gap-3 pt-4">
+          <button
+            onClick={() => handleNavigate("about")}
+            className="bg-white hover:bg-gray-50 text-gray-900 font-bold px-5 py-2.5 rounded-full text-[11px] tracking-wider uppercase transition-all shadow-md focus:outline-none"
+          >
+            Our Mission
+          </button>
+          <button
+            onClick={() => handleNavigate("programs")}
+            className="bg-transparent hover:bg-white/10 text-white font-bold px-5 py-2.5 rounded-full text-[11px] tracking-wider uppercase transition-all border border-white/30 focus:outline-none"
+          >
+            Explore Programs
+          </button>
+        </div>
+      </div>
+
+      {/* Right World-Vision-Inspired High Conversion Quick Donation Panel */}
+      <div className="lg:col-span-5 flex flex-col justify-center">
+        <div className="bg-white rounded-3xl p-5 sm:p-6 shadow-premium border border-gray-100/80 relative overflow-hidden text-gray-900 w-full h-full flex flex-col justify-between">
+          <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#0B5ED7]"></div>
+          
+          <div>
+            <h2 className="text-lg font-extrabold tracking-tight mb-0.5 text-gray-900">
+              {hero.donationPanel.title}
+            </h2>
+            <p className="text-[11px] text-gray-500 mb-4 font-medium">
+              {hero.donationPanel.subtitle}
+            </p>
+
+            <div className="space-y-3.5">
+              {/* Amount Preset Grid */}
+              <div className="grid grid-cols-4 gap-2">
+                {hero.donationPanel.presets.map((preset) => (
+                  <button
+                    key={preset.amount}
+                    onClick={() => {
+                      setSelectedAmount(preset.amount);
+                      setCustomAmount("");
+                    }}
+                    className={`py-3 px-1 rounded-xl text-xs font-black border tracking-tight transition-all focus:outline-none ${
+                      selectedAmount === preset.amount
+                        ? "bg-[#0B5ED7] border-[#0B5ED7] text-white shadow-md shadow-[#0B5ED7]/15"
+                        : "bg-[#F8F9FA] border-gray-200/70 text-gray-800 hover:bg-gray-50 hover:border-gray-300"
+                    }`}
+                  >
+                    ${preset.amount}
+                  </button>
+                ))}
+                <button
+                  onClick={() => setSelectedAmount("custom")}
+                  className={`py-3 px-1 rounded-xl text-[11px] font-black border tracking-tight transition-all focus:outline-none ${
+                    selectedAmount === "custom"
+                      ? "bg-[#0B5ED7] border-[#0B5ED7] text-white shadow-md shadow-[#0B5ED7]/15"
+                      : "bg-[#F8F9FA] border-gray-200/70 text-gray-800 hover:bg-gray-50 hover:border-gray-300"
+                  }`}
+                >
+                  Custom
+                </button>
+              </div>
+
+              {/* Custom input or Preset impact description */}
+              {selectedAmount === "custom" ? (
+                <div className="relative animate-in fade-in slide-in-from-top-2 duration-200">
+                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 font-black text-gray-400 text-xs">$</span>
+                  <input
+                    type="number"
+                    placeholder="Enter customized donation amount"
+                    value={customAmount}
+                    onChange={(e) => setCustomAmount(e.target.value)}
+                    className="w-full bg-[#F8F9FA] border border-gray-200 rounded-xl py-2.5 pl-7 pr-3.5 text-xs font-bold text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#0B5ED7] focus:bg-white transition-all"
+                  />
+                </div>
+              ) : (
+                <p className="text-[11px] text-gray-500 font-medium leading-relaxed bg-[#F8F9FA] p-3 rounded-xl border border-gray-100 min-h-[48px]">
+                  {activePresetDesc}
+                </p>
+              )}
+
+              {/* Quick Button Submission */}
+              <button
+                onClick={() => handleOpenDonate(selectedAmount, "General Purpose Fund")}
+                className="w-full bg-[#0B5ED7] hover:bg-[#094cb0] text-white font-bold py-3.5 px-5 rounded-xl text-xs tracking-wider uppercase transition-all shadow-md focus:outline-none active:scale-[0.98]"
+              >
+                {hero.donationPanel.ctaButton}
+              </button>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between text-[9px] text-gray-400 font-semibold pt-4 mt-auto">
+            <span className="flex items-center gap-1">🔒 Tax Deductible 501(c)(3)</span>
+            <span>Verified secure sandbox</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
 
         {/* 2. STATS & KEY IMPACTS BAR */}
         <section className="relative z-20 -mt-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
