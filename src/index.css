@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, sans-serif;
+  --font-display: "Poppins", system-ui, sans-serif;
+  
+  --color-brand-blue: #0B5ED7;
+  --color-brand-gold: #F4C542;
+}
+
+/* Custom transitions and scroll behaviors */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: #F8F9FA;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Professional Polish Custom utility classes */
+.hero-gradient {
+  background: linear-gradient(135deg, #0B5ED7 0%, #052E6E 100%);
+}
+
+.hero-overlay-gradient {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(11, 94, 215, 0.45) 60%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.shadow-soft {
+  box-shadow: 0 10px 30px -5px rgba(11, 94, 215, 0.05), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+}
+
+.shadow-premium {
+  box-shadow: 0 20px 40px -15px rgba(11, 94, 215, 0.12), 0 8px 16px -4px rgba(15, 23, 42, 0.04);
+}
+
+.border-accent {
+  border-color: #F4C542;
+}
+
+.bg-accent-light {
+  background-color: rgba(244, 197, 66, 0.1);
+}
+
+.text-brand-gradient {
+  background: linear-gradient(135deg, #0B5ED7 0%, #003e9c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-accent-gradient {
+  background: linear-gradient(135deg, #F4C542 0%, #dca71b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Scrollbar styling */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.3);
+  border-radius: 20px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.5);
+}
+
+/* Smooth active menu indicators */
+.nav-link-active {
+  position: relative;
+}
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 16px;
+  right: 16px;
+  height: 2px;
+  background-color: #F4C542;
+  border-radius: 2px;
+}
